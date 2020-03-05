@@ -1,31 +1,42 @@
-import java.io.File;
-import java.nio.file.Files;
+import java.io.IOException;
+import java.nio.file.*;
 import java.util.Iterator;
 
-public class FileContent implements IterableText{
+public class FileContent implements IterableText {
     private String path;
     private String fileName;
-	private Iterator<String> charIterator;
+    private Iterator<String> charIterator;
     private Iterator<String> wordIteraor;
 
-    
-    public String getFileName(){
-
+    public FileContent(String path, String fileName, Iterator<String> charIterator, Iterator<String> wordIteraor) {
+        this.path = path;
+        this.fileName = fileName;
+        this.charIterator = charIterator;
+        this.wordIteraor = wordIteraor;
     }
+
+    public String getFileName() {
+        return this.fileName;
+    }
+
     public void setFileName(String fileName) {
         this.fileName = fileName;
-    
-    }    
-    public Iterator<String> charIterator(){
+
+    }
+
+    public Iterator<String> charIterator() {
         return this.charIterator;
 
     }
-    public Iterator<String> wordIterator(){
+
+    public Iterator<String> wordIterator() {
         return this.wordIteraor;
-    
+
     }
-    private void GetFileText(){
-            this.fileName =
+
+    public static String FileContentReader(String fileName) throws IOException {
+    String text = Files.readString(Path.of(fileName));
+    return text;
     }
     
 
